@@ -28,6 +28,10 @@ public static class TriangleTypeDeterminer
 {
     public static TriangleType DetermineTriangleType(double a, double b, double c)
     {
+        if (a <= 0 || b <= 0 || c <= 0)
+        {
+            throw new ArgumentException("Wrong arguments!");
+        }
         TriangleType result = 0;
         if (a == b && b == c)
         {
