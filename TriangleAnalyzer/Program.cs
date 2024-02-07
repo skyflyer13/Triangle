@@ -15,6 +15,21 @@ public class Program
 
         var triangleType = TriangleTypeDeterminer.DetermineTriangleType(sideA, sideB, sideC);
 
-        Console.WriteLine(triangleType);
+        if (triangleType.HasFlag(TriangleType.Equilateral))
+        {
+            Console.WriteLine("Trikotnik je enakostranicni");
+        }
+        if (triangleType.HasFlag(TriangleType.Isosceles))
+        {
+            Console.WriteLine("Trikotnik je enakokraki");
+        }
+        if (triangleType.HasFlag(TriangleType.RightAngled))
+        {
+            Console.WriteLine("Trikotnik je pravokotni");
+        }
+        if (triangleType.HasFlag(TriangleType.Scalene))
+        {
+            Console.WriteLine("Trikotnik je raznostranicni");
+        }
     }
 }

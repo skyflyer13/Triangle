@@ -1,26 +1,56 @@
 namespace TriangleAnalyzer;
 
+[Flags]
+public enum TriangleType
+{
+    /// <summary>
+    /// Enakostranicni
+    /// </summary>
+    Equilateral = 1,
+
+    /// <summary>
+    /// Enakokraki
+    /// </summary>
+    Isosceles = 2,
+
+    /// <summary>
+    /// Pravokotni
+    /// </summary>
+    RightAngled = 4,
+
+    /// <summary>
+    /// Raznostranicni
+    /// </summary>
+    Scalene = 8
+}
+
 public static class TriangleTypeDeterminer
 {
-    public static string DetermineTriangleType(double a, double b, double c)
+    public static TriangleType DetermineTriangleType(double a, double b, double c)
     {
+        TriangleType result = 0;
         if (a == b && b == c)
         {
-            return "The triangle is equilateral.";
+            result = result | TriangleType.Equilateral;
         }
-        else if (a == b || a == c || b == c)
+
+        if (a == b || a == c || b == c)
         {
-            return "The triangle is isosceles.";
+            result = result | TriangleType.Isosceles;
         }
-        else if ((Math.Pow(a, 2) + Math.Pow(b, 2)) == Math.Pow(c, 2) ||
+
+        if ((Math.Pow(a, 2) + Math.Pow(b, 2)) == Math.Pow(c, 2) ||
                  (Math.Pow(a, 2) + Math.Pow(c, 2)) == Math.Pow(b, 2) ||
                  (Math.Pow(b, 2) + Math.Pow(c, 2)) == Math.Pow(a, 2))
         {
-            return "The triangle is right-angled.";
+            result = result | TriangleType.RightAngled;
         }
-        else
+
+        if (a != b && a != c && b != c)
         {
-            return "The triangle is scalene.";
+            result = result | TriangleType.Scalene;
         }
+
+        return result;
     }
 }
