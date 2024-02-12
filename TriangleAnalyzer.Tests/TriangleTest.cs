@@ -20,6 +20,19 @@ public class UnitTest1
         Assert.Equal(TriangleType.RightAngled, result & TriangleType.RightAngled);
     }
 
+    [Fact]
+    public void ScaleneTest()
+    {
+        var result = TriangleTypeDeterminer.DetermineTriangleType(7, 8, 9);
+        Assert.Equal(TriangleType.Scalene, result & TriangleType.Scalene);
+    }
+
+    [Fact]
+    public void IsoscelesTest()
+    {
+        var result = TriangleTypeDeterminer.DetermineTriangleType(5, 5, 6);
+        Assert.Equal(TriangleType.Isosceles, result & TriangleType.Isosceles);
+    }
 
     [Fact]
     public void TriangleDeterminerReturnsMultipleTypes()
